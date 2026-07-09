@@ -139,6 +139,10 @@ tr:last-child td{border-bottom:none}
 .spot{display:inline-block; font-size:12px; color:var(--green); border:1px solid rgba(51,255,153,.3);
   padding:3px 9px; border-radius:999px; white-space:nowrap}
 .spot:hover{background:rgba(51,255,153,.1)}
+.sparta{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; padding-top:8px; border-top:1px solid var(--line)}
+.sparta .lbl{font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--ink-dim); align-self:center; letter-spacing:.08em}
+.sparta a{font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--green); border:1px solid rgba(51,255,153,.3); border-radius:999px; padding:3px 9px}
+.sparta a:hover{background:rgba(51,255,153,.1)}
 tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
 .badge{font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:.12em; padding:2px 7px;
   border-radius:6px; margin-left:6px; vertical-align:middle}
@@ -219,9 +223,10 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
 /* 2-column layout on wider screens (grid keeps each card intact + reading order) */
 @media(min-width:820px){
   .wrap{max-width:1120px}
-  section.show{display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; align-items:start}
-  section.show > .h2, section.show > .lead, section.show > .warn, section.show > .rd-note, section.show > .grid2{grid-column:1 / -1}
-  section.show > .card{margin:0}
+  section.show{column-count:2; column-gap:20px}
+  section.show > .card{break-inside:avoid; margin:0 0 14px}
+  section.show > .h2, section.show > .lead, section.show > .warn, section.show > .rd-note, section.show > .grid2{column-span:all}
+  .colbreak{break-before:column}
 }
 .daycard .day{margin:0 0 8px}
 </style>
@@ -234,7 +239,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
     <h1>DEF&nbsp;CON&nbsp;34</h1>
     <p class="sub"><b>GMO IERAE × Kyung Hee University</b> · Booth Ops</p>
     <p class="sub">Las Vegas Convention Center · Aug 6–9, 2026</p>
-    <div class="flag">🇯🇵 NRT → LAS · 🇺🇸 Aug 4 – 11, 2026 · Traveler: Yuto</div>
+    <div class="flag">🇯🇵 NRT → LAS · 🇺🇸 Aug 4 – 11, 2026</div>
 
     <div class="count" id="count">
       <div class="box"><div class="n" id="cd">--</div><div class="l">Days</div></div>
@@ -249,10 +254,10 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
     <button data-t="links" class="active">📋 Overview</button>
     <button data-t="itin">🗓 Itinerary</button>
     <button data-t="event,booth">🛰 Event &amp; Booth</button>
-    <button data-t="flight,hotel,cost">🧳 Logistics</button>
+    <button data-t="flight,hotel">🧳 Logistics</button>
     <button data-t="todo">✅ Packing</button>
     <span class="navbreak"></span>
-    <button data-t="basics">📚 基礎知識</button>
+    <button data-t="basics">📚 Fundamentals</button>
     <button data-t="eng">🌐 English</button>
   </nav>
 
@@ -291,7 +296,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <tr><td class="t-ic">🏨</td><td class="t-time">21:00</td><td class="t-plan">Back at hotel</td><td></td></tr>
     </table></div>
 
-    <div class="card daycard" style="padding:12px 14px"><div class="day"><span class="dn">DAY 5</span><span class="dd">Sat · Aug 8</span><span class="dl">DEF CON Day 3</span></div>
+    <div class="card daycard colbreak" style="padding:12px 14px"><div class="day"><span class="dn">DAY 5</span><span class="dd">Sat · Aug 8</span><span class="dl">DEF CON Day 3</span></div>
       <table>
       <tr><td class="t-ic">🏟</td><td class="t-time">09:00</td><td class="t-plan">Arrive venue</td><td><a class="spot" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Las+Vegas+Convention+Center">LVCC</a></td></tr>
       <tr class="hi"><td class="t-ic">🛰</td><td class="t-time">10–18</td><td class="t-plan">Booth operation<span class="badge b-work">OPS</span></td><td></td></tr>
@@ -336,7 +341,10 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <h3>🔗 Partner Sites</h3>
       <div class="links">
         <a class="lk-btn" target="_blank" href="https://gmo-cybersecurity.com/cs/lp_space-cyber-security/"><span class="i">🛡</span><span><b>GMO Cybersecurity by Ierae</b><small>Space Cyber Security</small></span><span class="go">↗</span></a>
-        <a class="lk-btn" target="_blank" href="https://pwnlab.kr/"><span class="i">🐱‍💻</span><span><b>PwnLab — Kyung Hee University</b><small>Prof. Jang · offensive security research</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="https://www.pwnlab.kr/team/"><span><b>PwnLab — Kyung Hee University</b><small>Team · Prof. Jang</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="http://khusat.khu.ac.kr/"><span><b>Kyung Hee University (KHU)</b><small>School of Space Research</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="https://sparta.aerospace.org/"><span class="i">🎯</span><span><b>SPARTA</b><small>Space attack technique framework (Aerospace)</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="https://www.enisa.europa.eu/"><span class="i">🇪🇺</span><span><b>ENISA</b><small>EU cybersecurity agency · space threat landscape</small></span><span class="go">↗</span></a>
       </div>
     </div>
 
@@ -363,7 +371,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <div class="tickrow"><span class="tick">●</span><span>CFP accepted</span></div>
       <div class="tickrow"><span class="tick">●</span><span>Venue confirmed — LVCC, same as last year</span></div>
       <div class="tickrow"><span class="tick">●</span><span>Flights booked (Aug 4 – 10)</span></div>
-      <div class="tickrow"><span class="tick">●</span><span>Hotel — Circa Resort &amp; Casino (downtown)</span></div>
+      <div class="tickrow"><span class="tick">●</span><span>Hotels — Circus Circus &amp; Hilton</span></div>
       <div class="tickrow"><span class="dim">○</span><span class="dim">Aug 5 setup day — to confirm on site</span></div>
     </div>
 
@@ -387,8 +395,8 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <h3>🧭 Get Around (Maps)</h3>
       <div class="links">
         <a class="lk-btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Las+Vegas+Convention+Center"><span class="i">🏟</span><span><b>LVCC — Venue</b><small>Las Vegas Convention Center</small></span><span class="go">↗</span></a>
-        <a class="lk-btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Circa+Resort+and+Casino+Las+Vegas"><span class="i">🏨</span><span><b>Hotel</b><small>Circa Resort &amp; Casino</small></span><span class="go">↗</span></a>
-        <a class="lk-btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Circa+Resort+and+Casino+Las+Vegas&destination=Las+Vegas+Convention+Center"><span class="i">🚕</span><span><b>Hotel → LVCC route</b><small>Circa → LVCC directions</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="https://maps.app.goo.gl/pVhmKQgqhmpLY3ub7"><span class="i">🎪</span><span><b>Hotel — Circus Circus</b><small>Open in Maps</small></span><span class="go">↗</span></a>
+        <a class="lk-btn" target="_blank" href="https://maps.app.goo.gl/ByFzqBu75eN6Zaxq9"><span class="i">🏨</span><span><b>Hotel — Hilton</b><small>Open in Maps</small></span><span class="go">↗</span></a>
         <a class="lk-btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Harry+Reid+International+Airport+Las+Vegas"><span class="i">✈️</span><span><b>LAS — Airport</b><small>Harry Reid International</small></span><span class="go">↗</span></a>
       </div>
     </div>
@@ -419,6 +427,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <p class="muted"><b style="color:var(--ink)">Why it works:</b> Radio is broadcast openly; anyone on the right frequency, pointing the right way, can receive it.</p>
       <p class="muted"><b style="color:var(--ink)">Visitor flow:</b> frequency scan → point antenna via TLE → assemble the GNU Radio block puzzle → hidden image appears (pre-recorded IQ file).</p>
       <p class="muted"><b style="color:var(--ink)">Takeaway:</b> reception needs three things aligned — right frequency, right antenna direction, right demodulation.</p>
+      <div class="sparta"><span class="lbl">SPARTA</span><a target="_blank" href="https://sparta.aerospace.org/technique/REC-0005/">REC-0005 Eavesdropping ↗</a></div>
     </div>
 
     <div class="card">
@@ -427,6 +436,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <p class="muted"><b style="color:var(--ink)">Why it works:</b> older satellites often lack authentication — mimic the command format (opcode) and it executes as if real.</p>
       <p class="muted"><b style="color:var(--ink)">Physical payoff:</b> the toy satellite's solar panel — tracking the light "sun" — suddenly spins out of control. Losing sun-tracking = cutting the satellite's power.</p>
       <p class="muted"><b style="color:var(--ink)">Takeaway:</b> a legitimate command becomes an attack when its timing is weaponized; unauthenticated command structures are dangerous.</p>
+      <div class="sparta"><span class="lbl">SPARTA</span><a target="_blank" href="https://sparta.aerospace.org/technique/EX-0014/">EX-0014 Replay ↗</a></div>
     </div>
 
     <div class="card">
@@ -435,6 +445,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <p class="muted"><b style="color:var(--ink)">Why a drone:</b> to inject into the ground antenna, transmit from the satellite's direction — a HackRF (playing the drone) floods fake signals.</p>
       <p class="muted"><b style="color:var(--ink)">Highlight:</b> two screens contradict — sat sim says "ANOMALY IN PROGRESS", mission-control dashboard reads "All Systems Normal."</p>
       <p class="muted"><b style="color:var(--ink)">Takeaway:</b> without authenticated telemetry, operators trust a fake status and can't see the real failure. Telemetry needs auth + encryption too.</p>
+      <div class="sparta"><span class="lbl">SPARTA</span><a target="_blank" href="https://sparta.aerospace.org/technique/EX-0014/">EX-0014 Replay ↗</a><a target="_blank" href="https://sparta.aerospace.org/technique/DE-0002/">DE-0002 Deceive Downlink ↗</a></div>
     </div>
 
     <div class="card">
@@ -443,9 +454,10 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <p class="muted"><b style="color:var(--ink)">Why it works:</b> changing speed shifts the orbital elements (altitude, inclination, RAAN, ν) and redirects the satellite onto a collision course.</p>
       <p class="muted"><b style="color:var(--ink)">Highlight:</b> a guaranteed Three.js collision animation on every run.</p>
       <p class="muted"><b style="color:var(--ink)">Takeaway:</b> one compromised satellite cascades across the fleet (a miniature Kessler syndrome).</p>
+      <div class="sparta"><span class="lbl">SPARTA</span><a target="_blank" href="https://sparta.aerospace.org/technique/EX-0012/07/">EX-0012.07 Modify On-Board Values: Propulsion ↗</a></div>
     </div>
 
-    <div class="card">
+    <div class="card colbreak">
       <h3>🪜 The story across all four</h3>
       <p class="muted">Escalating severity — same root cause throughout: signals are open to anyone, yet authentication and encryption are weak or absent.</p>
       <div class="tickrow"><span class="tick">1</span><span>Listen — interception (steal information)</span></div>
@@ -475,16 +487,6 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       <p class="note">Open items: preferred lab / project name & wording, any booth-appearance requests.</p>
     </div>
 
-    <div class="card">
-      <h3>✅ To Confirm with Steve</h3>
-      <div class="tickrow"><span class="dim">○</span><span>Aug 5 as setup day</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Booth size & layout</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Monitor & laptop availability (laptops on prep day)</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Badge allocation</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Power availability</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Tablecloth</span></div>
-      <div class="tickrow"><span class="dim">○</span><span>Network connectivity</span></div>
-    </div>
 
   </section>
 
@@ -523,49 +525,26 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
       </div>
       <div class="ftot">Total 14h40m · 1 stop (SFO)</div>
     </div>
-
-    <div class="card">
-      <dl class="kv">
-        <dt>Airline</dt><dd>United Airlines ★ 4.9/5</dd>
-        <dt>Class</dt><dd>Economy · round trip</dd>
-        <dt>Baggage</dt><dd>Carry-on + checked</dd>
-        <dt>Fare</dt><dd>≈ ¥254,260</dd>
-        <dt>Routing</dt><dd>NRT→LAX→LAS · LAS→SFO→HND</dd>
-        <dt>Note</dt><dd>Departs Tokyo <b>Narita</b>, returns to Tokyo <b>Haneda</b></dd>
-      </dl>
-    </div>
   </section>
 
   <section id="hotel">
     <div class="h2"><span class="em">🏨</span> Hotel</div>
-    <p class="lead">6 nights · downtown Las Vegas.</p>
+    <p class="lead">Las Vegas · Aug 4 – 10, 2026.</p>
     <div class="card">
-      <h3>Circa Resort &amp; Casino</h3>
+      <h3>🎪 Circus Circus</h3>
       <dl class="kv">
-        <dt>Where</dt><dd>Downtown Las Vegas · Fremont Street</dd>
         <dt>Check-in</dt><dd>Tue, Aug 4, 2026</dd>
         <dt>Check-out</dt><dd>Mon, Aug 10, 2026</dd>
-        <dt>Nights</dt><dd>6 · 1 adult, 1 room</dd>
       </dl>
-      <p class="note">Adults-only (21+) resort. Downtown — not on the LVCC/Strip corridor, so allow extra transit time to the venue.</p>
-      <p style="margin-top:8px"><a class="spot" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Circa+Resort+and+Casino+Las+Vegas">Open hotel in Maps →</a></p>
+      <p style="margin-top:8px"><a class="spot" target="_blank" href="https://maps.app.goo.gl/pVhmKQgqhmpLY3ub7">Open in Maps →</a></p>
     </div>
-  </section>
-
-  <section id="cost">
-    <div class="h2"><span class="em">💳</span> Cost</div>
-    <p class="lead">Rough budget (per person). Figures are estimates.</p>
     <div class="card">
-      <table>
-        <tr><td class="t-plan">✈️ Flight (round trip)</td><td class="t-time" style="width:auto;text-align:right">¥254,260</td><td style="width:60px;text-align:right"><span class="pill pd">paid</span></td></tr>
-        <tr><td class="t-plan">🏨 Hotel · 6 nights (Circa)</td><td class="t-time" style="width:auto;text-align:right">—</td><td style="text-align:right"><span class="pill pe">TBD</span></td></tr>
-        <tr><td class="t-plan">🍴 Meals (≈¥10k × 7d)</td><td class="t-time" style="width:auto;text-align:right">¥70,000</td><td style="text-align:right"><span class="pill pe">est</span></td></tr>
-        <tr><td class="t-plan">🚕 Local transport</td><td class="t-time" style="width:auto;text-align:right">¥30,000</td><td style="text-align:right"><span class="pill pe">est</span></td></tr>
-        <tr><td class="t-plan">🏨 Resort fee / city tax</td><td class="t-time" style="width:auto;text-align:right">¥25,000</td><td style="text-align:right"><span class="pill pe">est</span></td></tr>
-        <tr><td class="t-plan">📄 ESTA / misc</td><td class="t-time" style="width:auto;text-align:right">¥10,000</td><td style="text-align:right"><span class="pill pe">est</span></td></tr>
-      </table>
-      <div class="cost-tot"><span class="muted">Estimated total (excl. hotel)</span><span class="big">≈ ¥389,260</span></div>
-      <p class="note">Personal per-person estimate. Booth / village fees are handled separately by the company.</p>
+      <h3>🏨 Hilton</h3>
+      <dl class="kv">
+        <dt>Check-in</dt><dd>Tue, Aug 4, 2026</dd>
+        <dt>Check-out</dt><dd>Mon, Aug 10, 2026</dd>
+      </dl>
+      <p style="margin-top:8px"><a class="spot" target="_blank" href="https://maps.app.goo.gl/ByFzqBu75eN6Zaxq9">Open in Maps →</a></p>
     </div>
   </section>
 
@@ -617,7 +596,7 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
   </section>
 
   <section id="basics">
-    <div class="h2"><span class="em">📚</span> 基礎知識 · Fundamentals</div>
+    <div class="h2"><span class="em">📚</span> Fundamentals</div>
     <p class="lead">From zero — no space or hacking background needed. The groundwork that makes every scenario click.</p>
 
     <div class="card">
@@ -643,6 +622,55 @@ tr.hi td{background:linear-gradient(90deg,rgba(255,93,177,.10),transparent)}
         <p><i>Telemetry (TM)</i><small>the satellite's continuous "status report" (battery, temp, attitude, panel angle). → key in S3.</small></p>
         <p><i>Command (C2, opcode)</i><small>ground → satellite instructions in a fixed format (a number mapped to an action = opcode). → forged in S2–S4.</small></p>
         <p><i>Constellation</i><small>many satellites run as one coordinated fleet (Starlink, GPS). → the theme of S4.</small></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧩 The three segments</h3>
+      <div class="tickrow"><span class="tick">🛰</span><span><b style="color:var(--ink)">Space</b> — the satellite: bus (platform) + payload (mission)</span></div>
+      <div class="tickrow"><span class="tick">📡</span><span><b style="color:var(--ink)">Link</b> — the RF uplink / downlink between ground and orbit</span></div>
+      <div class="tickrow"><span class="tick">🏢</span><span><b style="color:var(--ink)">Ground</b> — ground stations, mission control, networks (often the weakest)</span></div>
+    </div>
+
+    <div class="card">
+      <h3>⚠️ Why space security is different</h3>
+      <div class="engph">
+        <p><i>You can't patch a satellite like a laptop.</i><small>打ち上げ後はパッチできない</small></p>
+        <p><i>Long lifetimes (10–20 yrs) mean legacy or no cryptography.</i><small>寿命が長く、暗号が旧式か無い</small></p>
+        <p><i>Distance was the only "defense" — and distance is not a security control.</i><small>距離は対策ではない</small></p>
+        <p><i>Physical access ends at launch — security must be designed in first.</i><small>物理アクセスは打ち上げまで。設計で守る</small></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🛡 The CIA triad, in orbit</h3>
+      <div class="tickrow"><span class="tick">C</span><span><b style="color:var(--ink)">Confidentiality</b> — keep TT&amp;C &amp; payload secret → encryption</span></div>
+      <div class="tickrow"><span class="tick">I</span><span><b style="color:var(--ink)">Integrity</b> — commands &amp; telemetry not forged → authentication</span></div>
+      <div class="tickrow"><span class="tick">A</span><span><b style="color:var(--ink)">Availability</b> — keep the link up → anti-jam, resilience</span></div>
+    </div>
+
+    <div class="card">
+      <h3>🧭 The common attack pattern</h3>
+      <div class="tickrow"><span class="tick">1</span><span>Find the frequency — scan until a signal peak appears</span></div>
+      <div class="tickrow"><span class="tick">2</span><span>Point the antenna — TLE → azimuth / elevation</span></div>
+      <div class="tickrow"><span class="tick">3</span><span>Decode it (receive) or inject it (transmit)</span></div>
+      <p class="note">All four demos reuse this same three-step chain.</p>
+    </div>
+
+    <div class="card">
+      <h3>🪜 Listen → Control → Deceive → Destroy</h3>
+      <div class="tickrow"><span class="tick">S1</span><span>Listen — intercept a downlink (steal information)</span></div>
+      <div class="tickrow"><span class="tick">S2</span><span>Control — inject a spoofed command (take over)</span></div>
+      <div class="tickrow"><span class="tick">S3</span><span>Deceive — fake telemetry (hide the anomaly)</span></div>
+      <div class="tickrow"><span class="tick">S4</span><span>Destroy — alter the orbit (collision, fleet-wide)</span></div>
+    </div>
+
+    <div class="card">
+      <h3>❌ Common misconceptions</h3>
+      <div class="engph">
+        <p><i>"Space is too far to attack."</i><small>The link and ground station are right here on Earth. / リンクと地上局は地上にある</small></p>
+        <p><i>"It's encrypted by default."</i><small>Often it isn't — especially legacy satellites. / 旧型は暗号化されていないことが多い</small></p>
+        <p><i>"Only nation-states can do this."</i><small>An SDR like HackRF costs a few hundred dollars. / SDRは数百ドル</small></p>
       </div>
     </div>
   </section>
